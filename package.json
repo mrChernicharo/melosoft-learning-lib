@@ -1,20 +1,21 @@
 {
-  "name": "lib",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "tsc --build",
-    "serve": "node dist/index.js",
-    "dev": "node --watch --experimental-strip-types src/index.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^5.7.2"
-  },
-  "volta": {
-    "node": "23.3.0"
-  }
+    "name": "@melodev/melosoft-learning-lib",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "private": false,
+    "scripts": {
+        "build": "tsc --build",
+        "serve": "node dist/index.js",
+        "dev": "node --watch --experimental-strip-types src/index.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "typescript": "^5.7.2"
+    },
+    "volta": {
+        "node": "23.3.0"
+    }
 }

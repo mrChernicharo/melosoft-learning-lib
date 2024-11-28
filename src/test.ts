@@ -5,3 +5,5 @@
 
 // console.log(dbToTs("date_of_birth"));
 // console.log(tsToDb("dateOfBirth"));
+
+//// node --experimental-strip-types src/test.ts
