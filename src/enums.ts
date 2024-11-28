@@ -1,5 +1,4 @@
-export enum UserRole {
-    Student = "student",
+export enum OrgUserRole {
     Instructor = "instructor",
     Admin = "admin",
 }
@@ -90,7 +89,7 @@ export enum ContentType {
 }
 
 export enum SkillLevel {
-    All = "all Levels",
+    All = "all_levels",
     Beginner = "beginner",
     Advanced = "advanced",
     Expert = "expert",
@@ -103,4 +102,9 @@ export enum Reaction {
     Rocket = "rocket",
     Genius = "bulb",
     // ... other content types as needed
+}
+
+export enum PasswordType {
+    UserCredential = "user_credential",
+    RecoveryCode = "recovery_code",
 }

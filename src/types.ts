@@ -1,164 +1,187 @@
-import { UserRole, CourseCategory, PaymentMethod, PaymentStatus, ContentType, SkillLevel, Reaction } from "./enums";
+import {
+    CourseCategory,
+    PaymentMethod,
+    PaymentStatus,
+    ContentType,
+    SkillLevel,
+    Reaction,
+    OrgUserRole,
+    PasswordType,
+} from "./enums";
 
 export interface Org {
-    id: string;
+    id: number;
     name: string;
-    imageUrl: string; // URL to the organization's logo or image
-    createdAt: Date;
-    updatedAt: Date;
+    image_url: string;
+    created_at: Date;
+    updated_at: Date;
+}
+export interface OrgUser {
+    id: number;
+    org_id: number;
+    user_id: number;
+    role: OrgUserRole;
 }
 
 export interface User {
-    id: string;
+    id: number;
     name: string;
     email: string;
-    passwordHash: string;
-    roles: UserRole[];
-    imageUrl: string; // URL to the user's profile picture
+    image_url: string;
     links: string[]; // homepage, youtube, linkedin, github, twitter etc..
-    createdAt: Date;
-    updatedAt: Date;
-    orgId?: string; // if admin or instructor
-    jobTitle?: string; // if instructor
+    job_title?: string; // if instructor
+    created_at: Date;
+    updated_at: Date;
+}
+
+export interface Password {
+    id: number;
+    user_id: number;
+    password: string;
+    salt: string;
+    image_url: string;
+    type: PasswordType; // if instructor
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface InstructorRating {
-    id: string;
-    userId: string;
-    instructorId: string;
+    id: number;
+    user_id: number;
+    instructor_id: number;
     rating: number;
     comment: string;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface Course {
-    id: string;
-    orgId: string;
-    instructorId: string;
+    id: number;
+    org_id: number;
+    instructor_id: number;
     title: string;
     description: string;
-    category: CourseCategory;
+    category: CourseCategory; // <-- consider sub-categories in the future
     skillLevel: SkillLevel;
     language: string;
     price: number;
-    isPublished: boolean;
-    imageUrl: string; // URL to the course's thumbnail or cover image
-    createdAt: Date;
-    updatedAt: Date;
+    is_published: boolean;
+    image_url: string; // URL to the course's thumbnail or cover image
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface CourseSection {
-    id: string;
-    courseId: string;
+    id: number;
+    course_id: number;
     title: string;
     description: string;
     order: number;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface CourseRating {
-    id: string;
-    userId: string;
-    courseId: string;
+    id: number;
+    user_id: number;
+    course_id: number;
     rating: number;
     comment: string;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface CourseAnnouncement {
-    id: string;
-    instructorId: string;
-    courseId: string;
+    id: number;
+    instructor_id: number;
+    course_id: number;
     comment: string; // markdown
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface UserCourseProgress {
-    userId: string;
-    courseId: string;
-    completedLessons: string[]; // Array of lesson IDs
-    enrolledAt: Date;
-    lastAccessed: Date;
+    user_id: number;
+    course_id: number;
+    completed_lessons: string[]; // Array of lesson IDs
+    enrolled_at: Date;
+    last_accessed: Date;
 }
 
 export interface Lesson {
-    id: string;
+    id: number;
     title: string;
     description: string;
-    courseId: string;
-    courseSectionId: string;
+    course_id: number;
+    course_section_id: number;
     order: number;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface LessonContent {
-    id: string;
-    lessonId: string;
-    contentType: ContentType;
+    id: number;
+    lesson_id: number;
+    content_type: ContentType;
     content: string | object; // Can be text, video URL, or other JSON object
     order: number;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 // Q&A
 export interface LessonPost {
-    id: string;
-    lessonId: string;
-    userId: string;
+    id: number;
+    lesson_id: number;
+    user_id: number;
     title: string;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface LessonComment {
-    id: string;
-    postId: string;
-    userId: string;
+    id: number;
+    postId: number;
+    user_id: number;
     comment: string;
-    createdAt: Date;
-    updatedAt: Date;
-    quotedCommentId?: string;
+    created_at: Date;
+    updated_at: Date;
+    quoted_comment_id?: string;
 }
 
 export interface CommentReactions {
-    id: string;
-    commentId: string;
+    id: number;
+    comment_id: number;
     reaction: Reaction;
-    userId: string;
-    createdAt: Date;
-    updatedAt: Date;
+    user_id: number;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface Payment {
-    id: string;
-    userId: string;
-    courseId: string;
+    id: number;
+    user_id: number;
+    course_id: number;
     amount: number;
     paymentMethod: PaymentMethod;
     status: PaymentStatus;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 
 export interface Certificate {
-    id: string;
-    userId: string;
-    courseId: string;
+    id: number;
+    user_id: number;
+    course_id: number;
     issuedAt: Date;
-    certificateUrl: string; // URL to the certificate PDF or other format
+    url: string; // URL to the certificate PDF or other format
 }
 
 export interface Notification {
-    id: string;
-    userId: string;
+    id: number;
+    user_id: number;
     title: string;
     message: string;
     isRead: boolean;
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
