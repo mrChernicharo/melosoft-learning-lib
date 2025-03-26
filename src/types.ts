@@ -1,12 +1,11 @@
 import {
-    CourseCategory,
     PaymentMethod,
     PaymentStatus,
     ContentType,
     SkillLevel,
     Reaction,
     OrgUserRole,
-    PasswordType,
+    VerificationCodeType,
 } from "./enums";
 
 export interface Org {
@@ -38,10 +37,19 @@ export interface Password {
     password: string;
     salt: string;
     image_url: string;
-    type: PasswordType;
     created_at: number;
     updated_at: number;
 }
+export interface VerificationCode {
+    id: number;
+    user_id: number;
+    code: string;
+    type: VerificationCodeType;
+    expires_at: number;
+    created_at: number;
+    updated_at: number;
+}
+
 export interface InstructorRating {
     id: number;
     user_id: number;
@@ -57,7 +65,6 @@ export interface Course {
     org_id: number;
     title: string;
     description: string;
-    category: CourseCategory; // <-- consider sub-categories in the future
     skillLevel: SkillLevel;
     language: string;
     price: number;
@@ -65,6 +72,15 @@ export interface Course {
     image_url: string; // URL to the course's thumbnail or cover image
     created_at: number;
     updated_at: number;
+}
+export interface Category {
+    id: number;
+    name: string;
+    sub_category: string;
+}
+export interface CourseCategory {
+    course_id: number;
+    category_id: string;
 }
 export interface CourseInstructor {
     course_id: number;
